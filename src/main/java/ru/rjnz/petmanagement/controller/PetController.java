@@ -4,6 +4,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import ru.rjnz.petmanagement.AuthorizedUser;
 import ru.rjnz.petmanagement.model.Pet;
 import ru.rjnz.petmanagement.service.PetService;
 
@@ -20,6 +21,6 @@ public class PetController {
 
     @GetMapping
     public List<Pet> getAll() {
-        return service.getAll();
+        return service.getAll(AuthorizedUser.user.id());
     }
 }

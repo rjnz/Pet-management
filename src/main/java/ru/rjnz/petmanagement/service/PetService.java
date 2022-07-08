@@ -14,7 +14,7 @@ public class PetService {
         this.repository = repository;
     }
 
-    public List<Pet> getAll() {
-        return repository.findAll();
+    public List<Pet> getAll(int userId) {
+        return repository.getAll(userId);
     }
 }
