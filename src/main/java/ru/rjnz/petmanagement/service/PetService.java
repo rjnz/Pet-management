@@ -1,47 +1,41 @@
 package ru.rjnz.petmanagement.service;
 
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 import ru.rjnz.petmanagement.model.Pet;
-import ru.rjnz.petmanagement.repository.PetRepository;
-import ru.rjnz.petmanagement.repository.UserRepository;
+import ru.rjnz.petmanagement.repository.datajpa.DataJpaPetRepository;
 
-import javax.transaction.Transactional;
 import java.util.List;
+
+import static ru.rjnz.petmanagement.util.validation.ValidationUtil.checkNotFoundWithId;
 
 @Service
 public class PetService {
-    private final PetRepository petRepository;
-    private final UserRepository userRepository;
+    private final DataJpaPetRepository repository;
 
-    public PetService(PetRepository petRepository, UserRepository userRepository) {
-        this.petRepository = petRepository;
-        this.userRepository = userRepository;
+    public PetService(DataJpaPetRepository repository) {
+        this.repository = repository;
     }
 
-    public List<Pet> getAll(int userId) {
-        return petRepository.getAll(userId);
-    }
-
-    public Pet getById(int id, int userId) {
-        return petRepository.findById(id)
-                .filter(pet -> pet.getUser().id() == userId)
-                .orElse(null);
-    }
-
-    @Transactional
-    public Pet save(Pet pet, int userId) {
-        if (!pet.isNew() && getById(pet.id(), userId) == null) {
-            return null;
-        }
-        pet.setUser(userRepository.getById(userId));
-        return petRepository.save(pet);
-    }
-
-    public void update(Pet pet, int id, int userId) {
-        petRepository.save(pet);
+    public Pet get(int id, int userId) {
+        return checkNotFoundWithId(repository.get(id, userId), id);
     }
 
     public void delete(int id, int userId) {
-        petRepository.deleteById(id, userId);
+        checkNotFoundWithId(repository.delete(id, userId), id);
+    }
+
+    public List<Pet> getAll(int userId) {
+        return repository.getAll(userId);
+    }
+
+    public void update(Pet pet, int userId) {
+        Assert.notNull(pet, "pet must not be null");
+        checkNotFoundWithId(repository.save(pet, userId), pet.id());
+    }
+
+    public Pet create(Pet pet, int userId) {
+        Assert.notNull(pet, "pet must not be null");
+        return repository.save(pet, userId);
     }
 }

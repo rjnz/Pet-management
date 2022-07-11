@@ -1,4 +1,4 @@
-package ru.rjnz.petmanagement.controller;
+package ru.rjnz.petmanagement.web;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonInclude;

@@ -1,4 +1,4 @@
-package ru.rjnz.petmanagement.controller;
+package ru.rjnz.petmanagement.web;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;

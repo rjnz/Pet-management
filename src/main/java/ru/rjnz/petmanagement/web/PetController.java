@@ -1,4 +1,4 @@
-package ru.rjnz.petmanagement.controller;
+package ru.rjnz.petmanagement.web;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -14,6 +14,9 @@ import ru.rjnz.petmanagement.service.PetService;
 import java.net.URI;
 import java.util.List;
 
+import static ru.rjnz.petmanagement.util.validation.ValidationUtil.assureIdConsistent;
+import static ru.rjnz.petmanagement.util.validation.ValidationUtil.checkNew;
+
 @RestController
 @RequestMapping(value = PetController.PETS_URL, produces = MediaType.APPLICATION_JSON_VALUE)
 public class PetController {
@@ -26,17 +29,21 @@ public class PetController {
 
     @GetMapping
     public List<Pet> getAll() {
-        return service.getAll(AuthorizedUser.user.id());
+        int userId = AuthorizedUser.user.id();
+        return service.getAll(userId);
     }
 
     @GetMapping("/{id}")
-    public Pet getById(@PathVariable int id) {
-        return service.getById(id, AuthorizedUser.user.id());
+    public Pet get(@PathVariable int id) {
+        int userId = AuthorizedUser.user.id();
+        return service.get(id, userId);
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Pet> save(@Validated(View.Web.class) @RequestBody Pet pet) {
-        Pet created = service.save(pet, AuthorizedUser.user.id());
+        int userId = AuthorizedUser.user.id();
+        checkNew(pet);
+        Pet created = service.create(pet, userId);
 
         URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path(PetController.PETS_URL + "/{id}")
@@ -48,11 +55,14 @@ public class PetController {
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void update(@Validated(View.Web.class) @RequestBody Pet pet, @PathVariable int id) {
-        service.update(pet, id, AuthorizedUser.user.id());
+        assureIdConsistent(pet, id);
+        int userId = AuthorizedUser.user.id();
+        service.update(pet, userId);
     }
 
     @DeleteMapping("/{id}")
     public void delete(@PathVariable int id) {
-        service.delete(id, AuthorizedUser.user.id());
+        int userId = AuthorizedUser.user.id();
+        service.delete(id, userId);
     }
 }
