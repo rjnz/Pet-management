@@ -6,10 +6,11 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "users", uniqueConstraints = {@UniqueConstraint(columnNames = {"id", "name"}, name = "users_unique_name_idx")})
-public class User extends AbstractEntity {
+public class User extends AbstractEntity implements Serializable {
     @NotBlank
     @Size(min = 2, max = 12)
     @Column(name = "password", nullable = false)

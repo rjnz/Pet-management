@@ -9,4 +9,5 @@
     <import resource="spring-security.xml"/>
 
     <context:component-scan base-package="ru.rjnz.petmanagement.service"/>
+    <context:component-scan base-package="ru.rjnz.petmanagement.security"/>
 </beans>

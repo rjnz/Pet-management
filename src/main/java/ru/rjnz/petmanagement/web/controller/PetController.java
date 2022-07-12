@@ -20,7 +20,7 @@ import static ru.rjnz.petmanagement.util.validation.ValidationUtil.checkNew;
 @RestController
 @RequestMapping(value = PetController.PETS_URL, produces = MediaType.APPLICATION_JSON_VALUE)
 public class PetController {
-    static final String PETS_URL = "/profile/pets";
+    static final String PETS_URL = "/rest/profile/pets";
     private final PetService service;
 
     public PetController(PetService service) {

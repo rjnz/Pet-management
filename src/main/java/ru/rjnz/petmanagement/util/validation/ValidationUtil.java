@@ -1,13 +1,10 @@
 package ru.rjnz.petmanagement.util.validation;
 
-import org.slf4j.Logger;
 import org.springframework.core.NestedExceptionUtils;
 import org.springframework.lang.NonNull;
 import ru.rjnz.petmanagement.model.AbstractEntity;
 import ru.rjnz.petmanagement.util.exception.IllegalRequestDataException;
 import ru.rjnz.petmanagement.util.exception.NotFoundException;
-
-import javax.servlet.http.HttpServletRequest;
 
 public class ValidationUtil {
 

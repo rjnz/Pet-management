@@ -24,6 +24,11 @@
 
         <tomcat.version>9.0.59</tomcat.version>
 
+        <!--guava-->
+        <guava.version>20.0</guava.version>
+
+        <jjwt.version>0.9.1</jjwt.version>
+
         <!--DB-->
         <postgresql.version>42.3.3</postgresql.version>
         <!--    Tests  -->
@@ -156,6 +161,12 @@
         </dependency>
 
         <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>${jjwt.version}</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <version>${postgresql.version}</version>
@@ -164,6 +175,12 @@
             <groupId>org.apache.tomcat</groupId>
             <artifactId>tomcat-jdbc</artifactId>
             <version>${tomcat.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>${guava.version}</version>
         </dependency>
     </dependencies>
 
