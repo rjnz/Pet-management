@@ -1,8 +1,13 @@
 package ru.rjnz.petmanagement.util.validation;
 
+import org.slf4j.Logger;
+import org.springframework.core.NestedExceptionUtils;
+import org.springframework.lang.NonNull;
 import ru.rjnz.petmanagement.model.AbstractEntity;
 import ru.rjnz.petmanagement.util.exception.IllegalRequestDataException;
 import ru.rjnz.petmanagement.util.exception.NotFoundException;
+
+import javax.servlet.http.HttpServletRequest;
 
 public class ValidationUtil {
 
@@ -36,5 +41,16 @@ public class ValidationUtil {
         } else if (entity.id() != id) {
             throw new IllegalRequestDataException(entity + " must be with id=" + id);
         }
+    }
+
+    //  https://stackoverflow.com/a/65442410/548473
+    @NonNull
+    public static Throwable getRootCause(@NonNull Throwable t) {
+        Throwable rootCause = NestedExceptionUtils.getRootCause(t);
+        return rootCause != null ? rootCause : t;
+    }
+
+    public static String getMessage(Throwable e) {
+        return e.getLocalizedMessage() != null ? e.getLocalizedMessage() : e.getClass().getName();
     }
 }
