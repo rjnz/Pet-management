@@ -1,4 +1,4 @@
-package ru.rjnz.petmanagement.repository.datajpa;
+package ru.rjnz.petmanagement.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -6,6 +6,6 @@ import ru.rjnz.petmanagement.model.User;
 
 @Repository
 public interface CrudUserRepository extends JpaRepository<User, Integer> {
-    User getByNameAndPassword(String name, String password);
+    User getByName(String name);
 }
 

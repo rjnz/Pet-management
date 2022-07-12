@@ -3,7 +3,7 @@ package ru.rjnz.petmanagement.service;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import ru.rjnz.petmanagement.model.Pet;
-import ru.rjnz.petmanagement.repository.datajpa.DataJpaPetRepository;
+import ru.rjnz.petmanagement.repository.DataJpaPetRepository;
 
 import java.util.List;
 

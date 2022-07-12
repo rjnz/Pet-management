@@ -1,4 +1,4 @@
-package ru.rjnz.petmanagement.repository.datajpa;
+package ru.rjnz.petmanagement.repository;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
