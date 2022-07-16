@@ -20,7 +20,7 @@ public class JwtTokenProvider {
     private final UserService service;
 
     private String secretKey = "petmanagement";
-    private String authHeader = "Authentication";
+    private String authHeader = "Authorization";
     private long validityInMilliseconds = 600000L;
 
     public JwtTokenProvider(UserService service) {

@@ -1,15 +1,15 @@
 package ru.rjnz.petmanagement.util.exception;
 
+import org.springframework.http.HttpStatus;
+
 public class ErrorInfo {
     private final String url;
-    private final ErrorType type;
-    private final String typeMessage;
+    private final String status;
     private final String[] details;
 
-    public ErrorInfo(CharSequence url, ErrorType type, String typeMessage, String... details) {
+    public ErrorInfo(CharSequence url, HttpStatus status, String... details) {
         this.url = url.toString();
-        this.type = type;
-        this.typeMessage = typeMessage;
+        this.status = status.toString();
         this.details = details;
     }
 }

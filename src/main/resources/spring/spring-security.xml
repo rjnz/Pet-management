@@ -9,7 +9,7 @@
     <http pattern="/rest/**" use-expressions="true" name="restSecurityFilterChain">
         <custom-filter before="FORM_LOGIN_FILTER" ref="jwtTokenFilter" />
         <intercept-url pattern="/rest/profile/registration" method="POST" access="isAnonymous()"/>
-        <intercept-url pattern="/rest/profile/login" method="POST" access="permitAll()"/>
+        <intercept-url pattern="/rest/profile/login" method="POST" access="isAnonymous()"/>
         <intercept-url pattern="/**" access="isAuthenticated()"/>
 
         <form-login default-target-url="/pets"

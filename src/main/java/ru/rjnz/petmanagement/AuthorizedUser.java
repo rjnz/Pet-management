@@ -1,9 +1,8 @@
 package ru.rjnz.petmanagement;
 
-import ru.rjnz.petmanagement.model.Role;
 import ru.rjnz.petmanagement.model.User;
 
-import java.util.Set;
+import java.util.HashSet;
 
 public class AuthorizedUser extends org.springframework.security.core.userdetails.User {
     private User user;
@@ -16,7 +15,7 @@ public class AuthorizedUser extends org.springframework.security.core.userdetail
                 true,
                 true,
                 true,
-                Set.of(Role.USER)
+                new HashSet<>()
         );
         this.user = user;
     }
