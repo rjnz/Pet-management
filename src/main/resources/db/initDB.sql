@@ -14,11 +14,12 @@ CREATE UNIQUE INDEX users_unique_name_idx ON users (name);
 
 CREATE TABLE pets
 (
-    id      INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
-    user_id INTEGER NOT NULL,
-    name    VARCHAR NOT NULL,
-    type    VARCHAR NOT NULL,
-    sex     VARCHAR NOT NULL,
+    id        INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
+    user_id   INTEGER   NOT NULL,
+    name      VARCHAR   NOT NULL,
+    birthdate TIMESTAMP NOT NULL,
+    type      VARCHAR   NOT NULL,
+    sex       VARCHAR   NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
 );
 CREATE UNIQUE INDEX pets_unique_name_user_idx ON pets (user_id, name);

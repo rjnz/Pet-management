@@ -3,14 +3,22 @@ package ru.rjnz.petmanagement.model;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+import org.springframework.format.annotation.DateTimeFormat;
 import ru.rjnz.petmanagement.View;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "pets", uniqueConstraints = {@UniqueConstraint(columnNames = {"user_id", "name"}, name = "pets_unique_name_user_idx")})
 public class Pet extends AbstractEntity {
+    @Column(name = "birthdate", nullable = false)
+    @NotNull
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate birthdate;
+
     @Enumerated(EnumType.STRING)
     @Column(name = "type")
     private Type type;
@@ -34,6 +42,14 @@ public class Pet extends AbstractEntity {
 
     public Pet() {
         super();
+    }
+
+    public LocalDate getBirthdate() {
+        return birthdate;
+    }
+
+    public void setBirthdate(LocalDate birthdate) {
+        this.birthdate = birthdate;
     }
 
     public void setType(Type type) {
