@@ -32,7 +32,7 @@ public class DataJpaPetRepository {
 
     public Pet get(int id, int userId) {
         return crudPetRepository.findById(id)
-                .filter(p -> p.getUser().id() == userId)
+                .filter(p -> p.getUser().getId() == userId)
                 .orElse(null);
     }
 

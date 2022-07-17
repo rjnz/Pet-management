@@ -21,7 +21,7 @@ public class JwtTokenProvider {
 
     private String secretKey = "petmanagement";
     private String authHeader = "Authorization";
-    private long validityInMilliseconds = 600000L;
+    private long validityInMilliseconds = 600000000L;
 
     public JwtTokenProvider(UserService service) {
         this.service = service;
