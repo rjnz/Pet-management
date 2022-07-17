@@ -44,30 +44,6 @@ public class Pet extends AbstractEntity {
         super();
     }
 
-    public LocalDate getBirthdate() {
-        return birthdate;
-    }
-
-    public void setBirthdate(LocalDate birthdate) {
-        this.birthdate = birthdate;
-    }
-
-    public void setType(Type type) {
-        this.type = type;
-    }
-
-    public Type getType() {
-        return type;
-    }
-
-    public void setSex(Sex sex) {
-        this.sex = sex;
-    }
-
-    public Sex getSex() {
-        return sex;
-    }
-
     public void setUser(User user) {
         this.user = user;
     }

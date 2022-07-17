@@ -28,8 +28,4 @@ public class User extends AbstractEntity implements Serializable {
     public String getPassword() {
         return password;
     }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 }
